@@ -107,9 +107,9 @@ public class bChaining
         return eOutput;
     }
 
-    public static ArrayList<String> backwardsContext(String clasue)
+    public static ArrayList<String> backwardsContext(String clause)
     {
-        string bContext = clasue.split("=>")[0];
+        string bContext = clause.split("=>")[0];
         ArrayList<String> cTemp = new ArrayList<String>();
         String[] joins = bContext.split("&");
 
