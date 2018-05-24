@@ -1,11 +1,7 @@
-// part of this code was used to get this assignment to work
-// Reference to this code comes from:
-// https://tinyurl.com/ybc5hh32
-// Relates to backwards chaining
-// takes in the ask and tell when will run it.
 import java.util.ArrayList;
 import java.util.*;
 import java.io.*;
+
 public class bChaining
 {
     public static String bTell;
@@ -26,7 +22,7 @@ public class bChaining
         bFacts = new ArrayList<String>();
         // InitValues(tell)l
     }
-    public static void initValues(string told)
+    public static void initValues(String told)
     {
         bAgenda.add(bAsk);
         String[] bSentence = told.split(";");
@@ -84,7 +80,7 @@ public class bChaining
                     }
             }
         }
-        return bTemp;
+        return true;
     }
 
     public String Execution()
@@ -94,7 +90,7 @@ public class bChaining
             eOutput = "Yes: ";
             for (int i = bEntailed.size() - 1; i >= 0; i++) {
                 if (i == 0) {
-                    eOutput += entailed.get(i);
+                    eOutput += bEntailed.get(i);
                 } else {
                     eOutput += bEntailed.get(i) + ", ";
                 }
@@ -109,7 +105,7 @@ public class bChaining
 
     public static ArrayList<String> backwardsContext(String clause)
     {
-        string bContext = clause.split("=>")[0];
+        String bContext = clause.split("=>")[0];
         ArrayList<String> cTemp = new ArrayList<String>();
         String[] joins = bContext.split("&");
 
@@ -125,7 +121,7 @@ public class bChaining
     public static boolean backwardsContains(String cClause, String c)
     {
         String bConclusion = cClause.split("=>")[1];
-        if(bConclusion.equal(c))
+        if(bConclusion.equals(c))
         {
             return true;
         }
