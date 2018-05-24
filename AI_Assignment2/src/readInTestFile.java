@@ -16,7 +16,7 @@ public class readInTestFile
     }
 
     //Jonathan: Method to read test file via buffer reader and put it to string for further processing.
-    public String[] readProblemFile(String fileName)
+    public String[] readProblem(String fileName)
     {
 
         try
@@ -63,7 +63,7 @@ public class readInTestFile
     }
 
     //Jonathan: method to extract knowledge base as sentence.
-    public List<tellAskSentence> extractKB(String input)
+    public List<tellAskSentence> getKB(String input)
     {
         List<tellAskSentence> extractedKB = new ArrayList<tellAskSentence>();
         String[] tell = input.split(";");
@@ -111,7 +111,7 @@ public class readInTestFile
     }
 
     //method to extract query from concacted string input.
-    public tellAskSentence extractQuery(String input)
+    public tellAskSentence receivedQuery(String input)
     {
         return new tellAskSentence(input);
     }

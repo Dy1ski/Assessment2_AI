@@ -7,7 +7,7 @@ public class main
 {
     public static void main(String [] args) throws IOException
     {
-        //Dylan: Take in the arguement
+        //Dylan: Take in the two argument
         if(args.length < 2)
         {
 
@@ -15,40 +15,53 @@ public class main
             System.out.println("*Please use the correct format*");
 
         }
-        else
-          {
-              String result = "";
-              readInTestFile r = new readInTestFile();
-              String method = args[1];
-              String[] fileContent = r.readProblem(args[0]);
-              List<tellAskSentence> recievedKB = r.getKB(fileContent[1]);
-              tellAskSentence receivedQuery = r.receivedQuery(fileContent[3]);
-              KnowledgeBase KB = new KnowledgeBase();
-              KB.tellComplete(receivedKB);
-              KB.tell(receivedQuery);
-            // getting info on information
+        else {
+            //Jonathan: initialise all classes and start to process text files
+            String result = "";
+            readInTestFile r = new readInTestFile();
+            String method = args[1];
+            String[] fileContent = r.readProblem(args[0]);
+            List<tellAskSentence> receivedKB = r.getKB(fileContent[1]);
+            tellAskSentence receivedQuery = r.receivedQuery(fileContent[3]);
+            KnowledgeBase KB = new KnowledgeBase();
+            KB.tellComplete(receivedKB);
+            KB.tell(receivedQuery);
+            // Dylan: getting info on information
 
-              FileInputStream in = new FileInputStream(args[0]);
-              // like tutorial
-              BufferedReader buff = new BufferedReader(new InputStreamReader(in));
-              // getting info out on screen
-// do a switch statement*************************************************
-              buff.readLine();
-              String tell = buff.readLine();
-              buff.readLine();
-              String ask = buff.readLine();
-              if(method.equals("BC"))
-              {
-                  bChaining backwardChain = new bChaining(ask, tell);
-                  System.out.println(backwardChain.Execution());
-              }
-              if(method.equals("FC"))
-              {
-                  fChaining forwardChain = new fChaining(ask, tell);
-                  System.out.print(forwardChain.execution());
+            FileInputStream in = new FileInputStream(args[0]);
+            // Dylan: like tutorial
+            BufferedReader buff = new BufferedReader(new InputStreamReader(in));
+            // Dylan: getting info out on screen
+            // do a switch statement possibly.
 
-              }
-          }
+            buff.readLine();
+            String tell = buff.readLine();
+            buff.readLine();
+            String ask = buff.readLine();
+
+            //Dylan: Backward Chaining implementation
+            if (method.equals("BC")) {
+                bChaining backwardChain = new bChaining(ask, tell);
+                System.out.println(backwardChain.Execution());
+            }
+
+            //Jonathan: Forward Chaining implementation
+            if (method.equals("FC")) {
+                fChaining forwardChain = new fChaining(ask, tell);
+                System.out.print(forwardChain.execution());
+
+            }
+            //Dylan: Truth Table Checking implementation
+            if (method.equals("TT"))
+            {
+                TruthTable TT = new TruthTable(KB);
+                TT.Entails();
+                int modelCount = TT.TTModelCheck(receivedQuery);
+                result = (TT.solvable() + (": " + modelCount));
+            }
+
+            System.out.println(result);
+        }
 
 
     }

@@ -14,18 +14,21 @@ public class fChaining
     public static ArrayList<String> fEntailed;
     public static ArrayList<Integer> fCount;
 
+    //Jonathan: constructor to initialise variables for FC method
     public fChaining(String pAsk, String pTell)
     {
-       fTell = pTell;
-       fAsk = pAsk;
-       fAgenda = new ArrayList<String>();
-       fClause = new ArrayList<String>();
-       fFacts = new ArrayList<String>();
-       fEntailed = new ArrayList<String>();
-       fCount = new ArrayList<Integer>();
-       initValues(fTell);
+        fTell = pTell;
+        fAsk = pAsk;
+        fAgenda = new ArrayList<String>();
+        fClause = new ArrayList<String>();
+        fFacts = new ArrayList<String>();
+        fEntailed = new ArrayList<String>();
+        fCount = new ArrayList<Integer>();
+        initValues(fTell);
 
     }
+
+    //Dylan: method to initialise the method
     public static void initValues(String fT)
     {
         String[] fSentence = fT.split(";");
@@ -40,6 +43,8 @@ public class fChaining
         }
 
     }
+
+    //Jonathan: method to execute FC Method
     public String execution()
     {
         String eOutput = "";
@@ -58,49 +63,53 @@ public class fChaining
         }
         return eOutput;
     }
-public static boolean forwardPC(String fClause, String f)
-{
-    String fC = fClause.split("=>")[0];
-    String []  joins = fC.split("&");
-    if(joins.length==1)
+
+    //Dylan: method which checks if p appears in the premise of a given clause
+    //	input : clause, p
+    //	output : true if p is in the premise of clause
+    public static boolean forwardPC(String fClause, String f)
     {
-        return fC.equals(f);
-    }
-    else
-    {
-        return Arrays.asList(joins).contains(f);
-    }
-}
-
-
-
-public boolean forwardEntails()
-{
-    while(!fAgenda.isEmpty())
-    {
-        String f = fAgenda.remove(0);
-        fEntailed.add(f);
-
-        for(int i = 0; i< fClause.size(); i++)
+        String fC = fClause.split("=>")[0];
+        String []  joins = fC.split("&");
+        if(joins.length==1)
         {
-            if(forwardPC(fClause.get(i),f)) {
-                Integer k = fCount.get(i);
-
-                fCount.set(i,--k);
-
-
-            if(fCount.get(i)== 0) {
-                String hD = fClause.get(i).split("=>")[1];
-
-                if (hD.equals(fAsk)) {
-                    return true;
-                }
-                fAgenda.add(hD);
-
-            }
-           }
+            return fC.equals(f);
+        }
+        else
+        {
+            return Arrays.asList(joins).contains(f);
         }
     }
-    return false;
-}
+
+
+    //Jonathan: Forward Chaining Algorithm.
+    public boolean forwardEntails()
+    {
+        while(!fAgenda.isEmpty())
+        {
+            String f = fAgenda.remove(0);
+            fEntailed.add(f);
+
+            for(int i = 0; i< fClause.size(); i++)
+            {
+                if(forwardPC(fClause.get(i),f)) {
+                    Integer k = fCount.get(i);
+
+                    fCount.set(i,--k);
+
+
+                    if(fCount.get(i)== 0) {
+                        String hD = fClause.get(i).split("=>")[1];
+
+                        if (hD.equals(fAsk)) {
+                            return true;
+                        }
+                        fAgenda.add(hD);
+
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

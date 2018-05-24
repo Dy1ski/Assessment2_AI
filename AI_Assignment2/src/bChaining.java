@@ -11,7 +11,7 @@ public class bChaining
     public static ArrayList<String> bAgenda;
     public static ArrayList<String> bFacts;
 
-    // constructor
+    // Jonathan: constructor
     public bChaining(String ask, String tell)
     {
         bTell = tell;
@@ -22,6 +22,8 @@ public class bChaining
         bFacts = new ArrayList<String>();
         // InitValues(tell)l
     }
+
+    //Jonathan:  method which sets up initial values for backward chaining
     public static void initValues(String told)
     {
         bAgenda.add(bAsk);
@@ -41,7 +43,7 @@ public class bChaining
     }
 
 
-
+    //Dylan: Backwords Chaining Algorithm
     public boolean backwordsEntails()
     {
         while(!bAgenda.isEmpty())
@@ -77,12 +79,13 @@ public class bChaining
                         }
                     }
 
-                    }
+                }
             }
         }
         return true;
     }
 
+    //Jonathan: method which calls the backwardsEntails() method and returns output back to inference engine
     public String Execution()
     {
         String eOutput = "";
@@ -103,9 +106,10 @@ public class bChaining
         return eOutput;
     }
 
+    //Dylan:  Method that returns the conjuncts contained in a clause
     public static ArrayList<String> backwardsContext(String clause)
     {
-        String bContext = clause.split("=>")[0];
+        String bContext = clause.split("=>")[0];   // gets the premise
         ArrayList<String> cTemp = new ArrayList<String>();
         String[] joins = bContext.split("&");
 
@@ -118,6 +122,8 @@ public class bChaining
         }
         return cTemp;
     }
+
+    //Jonathan : method which checks if c appears in the conclusion of a given clause
     public static boolean backwardsContains(String cClause, String c)
     {
         String bConclusion = cClause.split("=>")[1];
