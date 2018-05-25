@@ -79,6 +79,8 @@ RESOURCES
  
 - http://snipplr.com/view/56296/ai-forward-chaining-implementation-for-propositional-logic-horn-form-knowledge-bases/
   This link gave us an insight to how to implement the forward chaining algorithm
+  - https://stackoverflow.com/questions/6091772/forward-chaining-and-backward-chaining-in-java
+  Understanding forward and backward chaining.
 
 
 
