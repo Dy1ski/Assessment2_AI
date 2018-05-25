@@ -71,7 +71,15 @@ RESOURCES
   It helped us understand how to use the buffer reader classes and then from there, we were able
   to organize the variables to be used in the other classes.
 
-- <<ADD MORE RESOURCES HERE>>
+- http://w7r.blogspot.com.au/2012/03/creating-truth-tables-for-your-java.html
+  This website gave us better understanding of how to implement our truth table. 
+  
+- https://stackoverflow.com/questions/12862109/how-does-the-backward-chaining-algorithm-work-in-first-order-logic/12884344?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+  This url gave us a deeper understanding in reference to backward-chaining and how the algorithm works.
+ 
+- http://snipplr.com/view/56296/ai-forward-chaining-implementation-for-propositional-logic-horn-form-knowledge-bases/
+  This link gave us an insight to how to implement the forward chaining algorithm
+
 
 
 *********************************************************************************************
